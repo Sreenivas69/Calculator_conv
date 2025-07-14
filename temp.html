@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        .calculator{
+            width: 300px;
+            height: 200px;
+            background-color: rgb(248, 177, 83);
+            padding: 80px;
+            margin: 100px auto;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0.1,0.1,0);
+        }
+        body{
+            background-image: url('3.jpg');
+            background-color: beige;
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-attachment: fixed; 
+        }
+        h2{
+            background-color: aqua;
+            border-radius: 5px;
+        }
+        #num1{
+            border-radius: 5px;
+        }
+        #operator1{
+            border-radius: 5px;
+        }
+        #operator2{
+            border-radius: 5px;
+        }
+        #c1{
+            border-radius: 5px;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temperature</title>
+</head>
+<body>
+    <div class="calculator">
+        <h2><center>Temperature Calculator</center></h2>
+        <center><input type="number" name="" id="num1" placeholder="Enter Temperature"></center> <br>
+        <!-- <input type="number" name="" id="num2" placeholder="Enter num2"> -->
+        <center>
+            <select name="" id="operator1">
+                <option value="select" selected disabled>Select</option>
+                <option value="C">Celsius(C)</option>
+                <option value="F">Fahrenheit(F)</option>
+                <option value="K">Kelvin(K)</option>
+                <option value="R">Rankine(R)</option>
+                <option value="RE">Reaumur(Re)</option>
+            </select>
+        </center> <br>
+        <center>
+            <select name="" id="operator2">
+                <option value="select" selected disabled>Select</option>
+                <option value="C">Celsius(C)</option>
+                <option value="F">Fahrenheit(F)</option>
+                <option value="K">Kelvin(K)</option>
+                <option value="R">Rankine(R)</option>
+                <option value="RE">Reaumur(Re)</option>
+            </select>
+        </center> <br>
+        <center><Button onclick="calculate()" id="c1">Convert</Button></center>
+        <a href="index.html">Home</a>
+        <h2 id="result"></h2>
+        <!-- <div id="results"></div> -->
+        
+    </div>
+
+    <script>
+        function calculate(){
+            let num1 = parseFloat(document.getElementById("num1").value);
+            // let num2 = parseInt(document.getElementById("num2").value);
+            
+            const operator1 = document.getElementById("operator1").value;
+            const operator2 = document.getElementById("operator2").value;
+            let result;
+            if(isNaN(num1)){
+                result = "Plese Enter a valid Temperature";
+            }
+            else if(operator1 === "C" && operator2 === "F"){
+                result = (num1*(9/5))+32;
+            }
+            else if(operator1 === "C" && operator2 === "C"){
+                result = num1;
+            }
+            else if(operator1 === "C" && operator2 === "K"){
+                result = num1 + 273.15;
+            }
+            else if(operator1 === "C" && operator2 === "R"){
+                result = (num1*(9/5))+491.67;
+            }
+            else if(operator1 === "C" && operator2 === "RE"){
+                result = num1*4/5;
+            }
+            else if(operator1 === "F" && operator2 === "F"){
+                result = num1;
+            }
+            else if(operator1 === "F" && operator2 === "C"){
+                result = (num1-32)*(5/2);
+            }
+            else if(operator1 === "F" && operator2 === "K"){
+                result = (num1 + 459.67)*(5/9);
+            }
+            else if(operator1 === "F" && operator2 === "R"){
+                result = num1 +459.67;
+            }
+            else if(operator1 === "F" && operator2 === "RE"){
+                result = (num1-32)*(4/9);
+            }
+            else if(operator1 === "K" && operator2 === "F"){
+                result = (num1*(9/5))-459.67;
+            }
+            else if(operator1 === "K" && operator2 === "C"){
+                result = num1-273.15;
+            }
+            else if(operator1 === "K" && operator2 === "K"){
+                result = num1;
+            }
+            else if(operator1 === "K" && operator2 === "R"){
+                result = num1*(9/5);
+            }
+            else if(operator1 === "K" && operator2 === "RE"){
+                result = (num1-273.15)*(4/5);
+            }
+            else if(operator1 === "R" && operator2 === "F"){
+                result = num1-459.67;
+            }
+            else if(operator1 === "R" && operator2 === "C"){
+                result = (num1-491.67)*(5/9);
+            }
+            else if(operator1 === "R" && operator2 === "K"){
+                result = num1 *(5/9);
+            }
+            else if(operator1 === "R" && operator2 === "R"){
+                result = num1;
+            }
+            else if(operator1 === "R" && operator2 === "RE"){
+                result = (num1-491.67)*(4/9);
+            }
+            else if(operator1 === "RE" && operator2 === "F"){
+                result = (num1*(9/4))+32;
+            }
+            else if(operator1 === "RE" && operator2 === "C"){
+                result = num1 * (5/4);
+            }
+            else if(operator1 === "RE" && operator2 === "K"){
+                result = (num1 *(5/4))+273.15;
+            }
+            else if(operator1 === "RE" && operator2 === "R"){
+                result = (num1*(9/4))+491.67;
+            }
+            else if(operator1 === "RE" && operator2 === "RE"){
+                result = num1;
+            }
+            else {
+                result = "Please select the temperature correctly"
+            }
+            document.getElementById("result").innerText = "Results :"+result+""+operator2;
+        }
+    </script>
+</body>
+</html>

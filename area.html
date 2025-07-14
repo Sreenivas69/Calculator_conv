@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        .calculator{
+            width: 300px;
+            height: 200px;
+            background-color: rgb(248, 177, 83);
+            padding: 100px;
+            margin: 100px auto;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0.1,0.1,0);
+        }
+        body{
+            background-image: url('4.jpg');
+            background-color: beige;
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-attachment: fixed; 
+        }
+        h2{
+            background-color: aqua;
+            border-radius: 5px;
+        }
+        #num1{
+            border-radius: 5px;
+        }
+        #operator1{
+            border-radius: 5px;
+        }
+        #operator2{
+            border-radius: 5px;
+        }
+        #c1{
+            border-radius: 5px;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Area</title>
+</head>
+<body>
+    <div class="calculator">
+        <h2><center>Area Calculator</center></h2>
+        <center><input type="number" name="" id="num1" placeholder="Enter Area"></center> <br>
+        <!-- <input type="number" name="" id="num2" placeholder="Enter num2"> -->
+        <center>
+            <select name="" id="operator1">
+                <option value="select" selected disabled>Select</option>
+                <option value="SF">Square Feet(SF)</option>
+                <option value="C">Cent(C)</option>
+                <option value="A">Acre(A)</option>
+            </select>
+        </center> <br>
+        <center>
+            <select name="" id="operator2">
+                <option value="select" selected disabled>Select</option>
+                <option value="SF">Square Feet(SF)</option>
+                <option value="C">Cent(C)</option>
+                <option value="A">Acre(A)</option>
+            </select>
+        </center> <br>
+        <center><Button onclick="calculate()" id="c1">Convert</Button></center>
+        <a href="index.html">Home</a>
+        <h2 id="result"></h2>
+        
+    </div>
+
+    <script>
+        function calculate(){
+            let num1 = parseFloat(document.getElementById("num1").value);
+            
+            const operator1 = document.getElementById("operator1").value;
+            const operator2 = document.getElementById("operator2").value;
+            let result;
+            if(isNaN(num1)){
+                result = "Plese Enter a valid Area ";
+            }
+            else if(operator1 === "SF" && operator2 === "SF"){
+                result = num1;
+            }
+            else if(operator1 === "SF" && operator2 === "C"){
+                result = num1/435.6;
+            }
+            else if(operator1 === "SF" && operator2 === "A"){
+                result = num1/100 ;
+            }
+            else if(operator1 === "C" && operator2 === "SF"){
+                result = num1*435.6;
+            }
+            else if(operator1 === "C" && operator2 === "C"){
+                result = num1;
+            }
+            else if(operator1 === "C" && operator2 === "A"){
+                result = num1/100;
+            }
+            else if(operator1 === "A" && operator2 === "SF"){
+                result = num1*43560;
+            }
+            else if(operator1 === "A" && operator2 === "C"){
+                result = num1*100;
+            }
+            else if(operator1 === "A" && operator2 === "A"){
+                result = num1 ;
+            }
+            else {
+                result = "Please select the area correctly"
+            }
+            document.getElementById("result").innerText = "Results :"+result;
+        }
+    </script>
+</body>
+</html>
